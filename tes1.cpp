@@ -1,36 +1,27 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 
-int n, k, b;
-vector<int> save;
-int L[100007] = {0}, R[100007] = {0};
-int f[100007] = {0}; 
-int a[100007];
-void init(){
-	cin>>n>>k>>b;
-	save.push_back(0);
-	for(int i=0; i<b; i++){
-		cin>>a[i];
-		f[a[i]]++;
-		save.push_back(a[i]);
+int main()
+{
+	int t;
+	cin >> t;
+	while (t--)
+	{
+		int n, k;
+		cin >> n >> k;
+		int A[n + 5];
+		for (int i = 0; i < n; i++)
+			cin >> A[i];
+		sort(A, A + n);
+		int counter = 0;
+		for (int i = 0; i < n; i++)
+		{
+			int x1 = A[i] - k, x2 = A[i] + k;
+			int ind1 = upper_bound(A + i, A + n, x1) - A;
+			int ind2 = lower_bound(A + i, A + n, x2) - A;
+			counter += (ind2 - ind1 + 1);
+		}
+		cout << counter << endl;
 	}
-	save.push_back(10);
-	sort(a, a+n);
-	sort(save.begin(), save.end());
-	
-	for(int i=0; i<save.size(); i++){
-		cout<<save[i]<<" ";
-	}
-}
-
-void process(){
-	for(int i=0; i<b; i++){
-		L[i] = a[i] - save[a[i] - 1]
-	}
-}
-
-int main(){
-	init();
 	return 0;
 }
-

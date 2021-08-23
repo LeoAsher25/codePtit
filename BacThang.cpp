@@ -1,37 +1,33 @@
-#include<bits/stdc++.h>
+
+#include <bits/stdc++.h>
 using namespace std;
 
-int n, k;
-long long a[100007];
-long long sum, ind, mod = 1e9+7;
+const long long MOD = 1e9 + 7;
 
-void init(){
-	cin>>n>>k;
+void pr()
+{
+	int n, k;
+	cin >> n >> k;
+	int d[n + 7] = {0};
+	d[0] = 1;
+	for (int i = 1; i <= n; i++)
+	{
+		for (int j = 1; j <= min(k, i); j++)
+		{
+			d[i] += d[i - j];
+			d[i] %= MOD;
+		}
+	}
+	cout << d[n] << '\n';
 }
 
-void process(){
-	sum = 1;
-	for(int i=1; i<=k; i++){
-		a[i] = sum;
-		sum = (sum + a[i]) % mod;
-	}
-	ind = 1;
-	sum --;
-	for(int i=k+1; i<=n; i++){
-		a[i] = sum;
-		sum -= a[ind++];
-		sum = (sum + a[i]) % mod;
-		if(sum < 0)	sum += mod;
-	}
-	cout<<a[n] <<'\n';
-}
-int main(){
+int main()
+{
 	int t;
-	cin>>t;
-	while(t--){
-		init();
-		process();
+	cin >> t;
+	while (t--)
+	{
+		pr();
 	}
 	return 0;
 }
-

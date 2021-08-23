@@ -1,31 +1,36 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-int a[1007], n, ans, count = 0;
-int l[1007] = {0};
+int n;
+int a[1007], l[1007];
 
 void init(){
 	cin>>n;
 	for(int i=0; i<n; i++){
 		cin>>a[i];
+		l[i] = 0;
 	}
 }
 
-void process(){
+void pr(){
+	init();
+	int res = 0;
 	for(int i=0; i<n; i++){
 		for(int j=0; j<i; j++){
 			if(a[j] < a[i]){
 				l[i] = max(l[i], l[j]);
 			}
 		}
-		l[i] ++;
-		ans = max(ans, l[i]);
+		l[i]+=1;
+		res = max(l[i], res);
 	}
-	cout<<ans;
+	cout<<res<<"\n";
+	// for(int i=0; i<n; i++)	cout<<l[i]<<' ';
+	
 }
 
 int main(){
-	init();
-	process();
+	pr();
+
 	return 0;
 }

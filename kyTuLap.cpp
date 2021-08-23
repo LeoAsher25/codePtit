@@ -13,7 +13,7 @@ void init(){
         cin>>x;
         s.push_back(x);
     }
-    memset(used, false, 100);
+    memset(used, false, 11);
 }
 
 int check(string a, string b){

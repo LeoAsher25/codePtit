@@ -8,6 +8,8 @@ vector<string> vt1, vt2;
 void init(){
 	cin>>n;
 	cin.ignore();
+	vt1.clear();
+	vt2.clear();
 	for(int i=0; i<n; i++){
 		string tmp;
 		cin>>tmp;
@@ -21,18 +23,19 @@ void init(){
 	vt2.push_back("0");
 }
 void process(){
-	int l=0, r=n-1, res = 0;
+	int l=0, r=n-1;
+	int mid;
 	while(l <= r){
-		int mid = (l+r)/2;
+		mid = (l+r)/2;
 		if(vt1[mid] == vt2[mid]){
-			res = mid;
 			l= mid+1;
 		}
 		else{
 			r = mid-1;
 		}
 	}
-	cout<<res+2<<'\n';	
+	if(vt1[mid] == vt2[mid])	mid+=1;
+	cout<<mid+1<<'\n';	
 }
 
 int main(){
